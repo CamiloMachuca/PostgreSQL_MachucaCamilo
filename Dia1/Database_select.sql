@@ -5,11 +5,10 @@ select nombre, precio from producto;
 -- 3. Lista todas las columnas de la tabla producto. 
 select * from producto;
 -- 4. Lista el nombre de los productos, el precio en euros y el precio en dólares  estadounidenses (USD). 
-	set moneda to "en_IE.utf8";
-	select nombre, precio::numeric::money, '$'||(Precio*1.08)::numeric  from producto;
+select nombre ,precio as Euros, precio * 1.08 as dolares from producto;
+	
 -- 5. Lista el nombre de los productos, el precio en euros y el precio en dólares  estadounidenses (USD). Utiliza los siguientes alias para las columnas: nombre  de producto, euros, dólares. 
-	set moneda to "en_IE.utf8";
-	select nombre as producto , precio::numeric::money as euro, '$'||(Precio*1.08)::numeric as dolares from producto;
+select nombre as producto ,precio as Euros, precio * 1.08 as dolares from producto;
 -- 6. Lista los nombres y los precios de todos los productos de la tabla producto,  convirtiendo los nombres a mayúscula. 
 select upper(nombre), precio from producto;
 -- 7. Lista los nombres y los precios de todos los productos de la tabla producto,  convirtiendo los nombres a minúscula. 
@@ -19,7 +18,7 @@ select nombre, upper(SUBSTRING(nombre, 1,2)) as dosCaracteres from fabricante;
 -- 9. Lista los nombres y los precios de todos los productos de la tabla producto,  redondeando el valor del precio.
 select nombre, ROUND(precio)  from producto;
 -- 10. Lista los nombres y los precios de todos los productos de la tabla producto,  truncando el valor del precio para mostrarlo sin ninguna cifra decimal. 
-select nombre, ROUND(precio)  from producto;
+select nombre, TRUNC(precio)  from producto;
 -- 11. Lista el identificador de los fabricantes que tienen productos en la  tabla producto. 
 select f.codigo from fabricante f inner join producto p on p.codigoFabricante=f.codigo;
 -- 12. Lista el identificador de los fabricantes que tienen productos en la  tabla producto, eliminando los identificadores que aparecen repetidos. 
